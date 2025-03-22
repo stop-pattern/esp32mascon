@@ -38,42 +38,42 @@ private:
     USBHID hid;
 
     /**
-     * @brief Delta x movement of the left analog stick.
+     * @brief X-axis position of left analog stick.
      */
     int16_t  _x;
 
     /**
-     * @brief Delta y movement of the left analog stick.
+     * @brief Y-axis position of left analog stick.
      */
     int16_t  _y;
 
     /**
-     * @brief Delta z movement of the right analog stick.
+     * @brief Z-axis position of right analog stick.
      */
     int16_t  _z;
 
     /**
-     * @brief Delta Rx movement of the left trigger (analog).
+     * @brief Rx-axis position of the left trigger (analog).
      */
     int16_t  _rx;
 
     /**
-     * @brief Delta Ry movement of the right trigger (analog).
+     * @brief Ry-axis position of the right trigger (analog).
      */
     int16_t  _ry;
 
     /**
-     * @brief Delta Rz movement of the right analog stick.
+     * @brief Rz-axis position of the right analog stick.
      */
     int16_t  _rz;
 
     /**
-     * @brief Delta slider movement of the right trigger (analog).
+     * @brief Slider position.
      */
     int16_t  _slider;
 
     /**
-     * @brief Delta Dial movement of the right trigger (analog).
+     * @brief Dial position.
      */
     int16_t  _dial;
 
