@@ -1,6 +1,11 @@
 name: PlatformIO CI
 
-on: [push]
+on:
+  push:
+    paths:
+    - 'src/**'
+    - 'test/**'
+    - '.github/workflows/**'
 
 jobs:
   build:
