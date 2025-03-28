@@ -33,6 +33,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
             name: firmware
-            path: |
-                \.pio\/build\/*\/.+\.bin
-                \.pio\/build\/esp32-s3-devkitc-1\/firmware\.elf
+            path: \.pio\/build\/esp32-s3-devkitc-1\/firmware\.elf
