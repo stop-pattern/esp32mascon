@@ -43,7 +43,7 @@ jobs:
         run: |
           cp .pio/build/*/firmware.bin ./
           ls -al
-          pythoon3 https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2conv.py firmware.bin -c -b 0x00 -f ESP32S3
+          python https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2conv.py firmware.bin -c -b 0x00 -f ESP32S3
           ls -al
 
       - name: Upload build artifact
