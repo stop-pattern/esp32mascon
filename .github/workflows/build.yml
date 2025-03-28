@@ -44,10 +44,8 @@ jobs:
           mkdir uf2
           cd uf2
           cp ../.pio/build/*/firmware.bin ./
-          ls -al
           wget https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2conv.py https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2families.json
           python uf2conv.py firmware.bin -c -b 0x00 -f ESP32S3
-          ls -al
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
