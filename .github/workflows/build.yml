@@ -34,4 +34,4 @@ jobs:
         with:
             name: firmware
             include-hidden-files: true
-            path: .pio/build/esp32-s3-devkitc-1/firmware.elf
+            path: .pio/build/*/*.bin
