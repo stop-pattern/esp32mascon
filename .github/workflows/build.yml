@@ -32,7 +32,7 @@ jobs:
       - name: Build PlatformIO Project
         run: pio run
 
-      - name: Upload build artifact
+      - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
             name: firmware
@@ -47,7 +47,7 @@ jobs:
           wget https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2conv.py https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2families.json
           python uf2conv.py firmware.bin -c -b 0x00 -f ESP32S3
 
-      - name: Upload build artifact
+      - name: Upload uf2
         uses: actions/upload-artifact@v4
         with:
             name: uf2
