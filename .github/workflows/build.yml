@@ -28,3 +28,9 @@ jobs:
 
       - name: Build PlatformIO Project
         run: pio run
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: firmware
+            path: .pio/build/*/.+\.(bin|elf)
