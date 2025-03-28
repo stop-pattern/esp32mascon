@@ -38,3 +38,16 @@ jobs:
             name: firmware
             include-hidden-files: true
             path: .pio/build/*/*.bin
+
+      - name: Convert bin to uf2
+        run: |
+          cp .pio/build/*/firmware.bin ./
+          ls -al
+          pythoon https://raw.githubusercontent.com/Microsoft/uf2/refs/heads/master/utils/uf2conv.py firmware.bin -c -b 0x00 -f ESP32S3
+          ls -al
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: firmware.uf2
+            path: *.uf2
