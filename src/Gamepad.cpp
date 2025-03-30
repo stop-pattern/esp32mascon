@@ -27,7 +27,7 @@ void Gamepad::begin(){
 }
 
 void Gamepad::end(){
-
+    hid.end();
 }
 
 bool Gamepad::write(){
