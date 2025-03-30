@@ -13,8 +13,22 @@ void testHats();
 void setup() {
     Serial.begin(115200);
     log_d("setup");
+
     gamepad.begin();
+
+    // USB settings
+// VID/PID is from V-USB
+    USB.VID(0x16c0);            // default: 0x303A
+    USB.PID(0x005df);           // default: 0x1001
+    USB.serialNumber("T0001");  // traial: "T0001"
+    // USB.firmwareVersion(0x100);
+    // USB.usbVersion(0x0200);
+    // USB.usbPower(0x500);
+    // USB.webUSB(true);
+    USB.productName("ESP32S3 USB Gamepad");
+    USB.manufacturerName("stop-pattern: contact@hollyelectric.net");
     USB.begin();
+
     delay(1000);
 }
 
