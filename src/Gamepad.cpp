@@ -195,7 +195,13 @@ bool Gamepad::setButton(uint8_t button, bool pressed){
     if(button > 31){
         return false;
     }
-    _buttons |= (pressed << button);
+    if (pressed)
+    {
+        _buttons |= (pressed << button);
+    }
+    else {
+        _buttons &= ~(1 << button);
+    }
     return write();
 }
 
