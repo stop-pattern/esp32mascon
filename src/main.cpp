@@ -18,7 +18,7 @@ void setup() {
     gamepad.begin();
 
     // USB settings
-// VID/PID is from V-USB
+    // VID/PID is from V-USB
     USB.VID(0x16c0);            // default: 0x303A
     USB.PID(0x005df);           // default: 0x1001
     USB.serialNumber("T0001");  // traial: "T0001"
@@ -49,33 +49,33 @@ void loop() {
 }
 
 void testAxises8() {
-  // -255から255までの値を1つずつ入力
+    // -255から255までの値を1つずつ入力
     for (int i = INT8_MIN; i <= INT8_MAX; i++) {
-    gamepad.leftStick(i, i);
-    delay(10);
-  }
-  delay(100);
+        gamepad.leftStick(i, i);
+        delay(10);
+    }
+    delay(100);
     for (int i = INT8_MIN; i <= INT8_MAX; i++) {
-    gamepad.rightStick(i, i);
-    delay(10);
-  }
-  delay(100);
+        gamepad.rightStick(i, i);
+        delay(10);
+    }
+    delay(100);
     for (int i = INT8_MIN; i <= INT8_MAX; i++) {
-    gamepad.leftTrigger(i);
-    delay(10);
-  }
-  delay(100);
+        gamepad.leftTrigger(i);
+        delay(10);
+    }
+    delay(100);
     for (int i = INT8_MIN; i <= INT8_MAX; i++) {
-    gamepad.rightTrigger(i);
-    delay(10);
-  }
-  gamepad.leftStick(0, 0);
-  gamepad.rightStick(0, 0);
-  gamepad.leftTrigger(0);
-  gamepad.rightTrigger(0);
+        gamepad.rightTrigger(i);
+        delay(10);
+    }
+    gamepad.leftStick(0, 0);
+    gamepad.rightStick(0, 0);
+    gamepad.leftTrigger(0);
+    gamepad.rightTrigger(0);
 }
 void testAxises16() {
-  // -32767から32768までの値を1つずつ入力
+    // -32767から32768までの値を1つずつ入力
     for (int i = 0; i <= INT16_MAX; i++) {
         gamepad.setAxes(i, i, i, i, i, i, i, i);
         log_i("setAxes: %x", i);
@@ -84,18 +84,18 @@ void testAxises16() {
     gamepad.setAxes(0, 0, 0, 0, 0, 0, 0, 0);
 }
 void testKeys() {
-  // 0から32までのキーを1つずつ押す
+    // 0から32までのキーを1つずつ押す
     for (int i = 0; i < 32; i++) {
-    gamepad.pressButton(i);
-    delay(100);
-    gamepad.releaseButton(i);
-  }
+        gamepad.pressButton(i);
+        delay(100);
+        gamepad.releaseButton(i);
+    }
 }
 void testHats() {
-  // 0から7までのキーを1つずつ押す
+    // 0から7までのキーを1つずつ押す
     for (int i = 0; i < 8; i++) {
-    gamepad.hat(i);
-    delay(100);
-  }
-  gamepad.hat(0);
+        gamepad.hat(i);
+        delay(100);
+    }
+    gamepad.hat(0);
 }
