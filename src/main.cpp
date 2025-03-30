@@ -3,6 +3,7 @@
 #include <USB.h>
 #include <USBHIDGamepad.h>
 
+// USBHIDGamepad gamepad;
 Gamepad gamepad;
 
 void testAxises8();
@@ -33,7 +34,7 @@ void setup() {
 }
 
 void loop() {
-    log_d("test: leftStick");
+    log_d("test: axises");
     testAxises16();
     delay(1000);
     log_d("test: hat");
@@ -43,6 +44,8 @@ void loop() {
     log_d("test: btn");
     delay(1000);
     testKeys();
+    delay(1000);
+    // gamepad.setButtons(0x12725277);
 }
 
 void testAxises8() {
@@ -74,10 +77,11 @@ void testAxises8() {
 void testAxises16() {
   // -32767から32768までの値を1つずつ入力
     for (int i = 0; i <= INT16_MAX; i++) {
-    gamepad.setAxes(i, i, i, i, i, i, i, i);
-  }
-  delay(100);
-  gamepad.setAxes(0, 0, 0, 0, 0, 0, 0, 0);
+        gamepad.setAxes(i, i, i, i, i, i, i, i);
+        log_i("setAxes: %x", i);
+    }
+    delay(100);
+    gamepad.setAxes(0, 0, 0, 0, 0, 0, 0, 0);
 }
 void testKeys() {
   // 0から32までのキーを1つずつ押す
