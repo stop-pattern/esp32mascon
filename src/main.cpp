@@ -1,4 +1,5 @@
 #include "Gamepad.h"
+#include "Settings.h"
 #include <Arduino.h>
 #include <USB.h>
 #include <USBHIDGamepad.h>
@@ -19,15 +20,15 @@ void setup() {
 
     // USB settings
     // VID/PID is from V-USB
-    USB.VID(0x16c0);            // default: 0x303A
-    USB.PID(0x005df);           // default: 0x1001
-    USB.serialNumber("T0001");  // traial: "T0001"
-    // USB.firmwareVersion(0x100);
-    // USB.usbVersion(0x0200);
-    // USB.usbPower(0x500);
-    // USB.webUSB(true);
-    USB.productName("ESP32S3 USB Gamepad");
-    USB.manufacturerName("stop-pattern: contact@hollyelectric.net");
+    USB.VID(Settings::USB::VID);
+    USB.PID(Settings::USB::PID);
+    USB.serialNumber(Settings::USB::SERIAL_NUMBER);
+    // USB.firmwareVersion(Settings::USB::FIRMWARE_VERSION);
+    // USB.usbVersion(Settings::USB::USB_VERSION);
+    // USB.usbPower(Settings::USB::USB_POWER);
+    // USB.webUSB(Settings::USB::WEB_USB);
+    USB.productName(Settings::USB::PRODUCT_NAME);
+    USB.manufacturerName(Settings::USB::MANUFACTURER_NAME);
     USB.begin();
 
     delay(1000);
