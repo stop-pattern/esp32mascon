@@ -6,14 +6,14 @@
 using namespace Settings::Input;
 using namespace Settings::Pins;
 
-namespace{
-    /// @brief スキャンするGPIOのピン配列
-    PinNumMatrix pinNumMatrix = {
-        {{Settings::Pins::COL0, Settings::Pins::COL1, Settings::Pins::COL2,
-          Settings::Pins::COL3, Settings::Pins::COL4, Settings::Pins::COL5},
-         {Settings::Pins::ROW0, Settings::Pins::ROW1, Settings::Pins::ROW2,
-          Settings::Pins::ROW3, Settings::Pins::ROW4, Settings::Pins::ROW5}}};
-}
+namespace {
+/// @brief スキャンするGPIOのピン配列
+PinNumMatrix pinNumMatrix = {
+    {{Settings::Pins::COL0, Settings::Pins::COL1, Settings::Pins::COL2,
+      Settings::Pins::COL3, Settings::Pins::COL4, Settings::Pins::COL5},
+     {Settings::Pins::ROW0, Settings::Pins::ROW1, Settings::Pins::ROW2,
+      Settings::Pins::ROW3, Settings::Pins::ROW4, Settings::Pins::ROW5}}};
+} // namespace
 
 /// @brief ピンをスキャンするタスク
 /// @param pvParameters
