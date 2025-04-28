@@ -1,14 +1,17 @@
+#include "UsbTask.h"
 #include "Gamepad.h"
+#include "Settings.h"
 #include <Arduino.h>
 #include <USB.h>
 #include <USBHIDGamepad.h>
-#include "UsbTask.h"
 
-namespace{
-    /// @brief ゲームパッドのラッパー
-    Gamepad gamepad;
-    // USBHIDGamepad gamepad;
-}
+using namespace Settings::USB;
+
+namespace {
+/// @brief ゲームパッドのラッパー
+Gamepad gamepad;
+// USBHIDGamepad gamepad;
+} // namespace
 
 #pragma region デモ用関数群
 void testAxises8() {
@@ -66,9 +69,8 @@ void testHats() {
 
 #pragma region タスク
 /// @brief USBを制御するタスク
-/// @param pvParameters 
-void UsbTask(void *pvParameters)
-{
+/// @param pvParameters
+void UsbTask(void *pvParameters) {
     Serial.begin(115200);
     log_d("setup");
 
@@ -76,20 +78,20 @@ void UsbTask(void *pvParameters)
 
     // USB settings
     // VID/PID is from V-USB
-    USB.VID(0x16c0);            // default: 0x303A
-    USB.PID(0x005df);           // default: 0x1001
-    USB.serialNumber("T0001");  // traial: "T0001"
-    // USB.firmwareVersion(0x100);
-    // USB.usbVersion(0x0200);
-    // USB.usbPower(0x500);
-    // USB.webUSB(true);
-    USB.productName("ESP32S3 USB Gamepad");
-    USB.manufacturerName("stop-pattern: contact@hollyelectric.net");
+    USB.VID(VID);
+    USB.PID(PID);
+    USB.serialNumber(SERIAL_NUMBER);
+    // USB.firmwareVersion(FIRMWARE_VERSION);
+    // USB.usbVersion(USB_VERSION);
+    // USB.usbPower(USB_POWER);
+    // USB.webUSB(WEB_USB);
+    USB.productName(PRODUCT_NAME);
+    USB.manufacturerName(MANUFACTURER_NAME);
     USB.begin();
 
     delay(1000);
-    
-    for(;;) {
+
+    for (;;) {
         log_d("test: axises");
         testAxises16();
         delay(1000);
