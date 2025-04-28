@@ -65,6 +65,18 @@ void testHats() {
     }
     gamepad.hat(0);
 }
+void test() {
+    log_d("test: axises");
+    testAxises16();
+    delay(1000);
+    log_d("test: hat");
+    testHats();
+    delay(1000);
+    gamepad.hat(0);
+    log_d("test: btn");
+    delay(1000);
+    testKeys();
+}
 #pragma endregion
 
 #pragma region タスク
@@ -95,16 +107,7 @@ void UsbTask(void *pvParameters) {
 
 #pragma region ループ部
     for (;;) {
-        log_d("test: axises");
-        testAxises16();
-        delay(1000);
-        log_d("test: hat");
-        testHats();
-        delay(1000);
-        gamepad.hat(0);
-        log_d("test: btn");
-        delay(1000);
-        testKeys();
+        test();
         delay(1000);
         // gamepad.setButtons(0x12725277);
     }
