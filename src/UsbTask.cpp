@@ -71,6 +71,7 @@ void testHats() {
 /// @brief USBを制御するタスク
 /// @param pvParameters
 void UsbTask(void *pvParameters) {
+#pragma region ループ部
     Serial.begin(115200);
     log_d("setup");
 
@@ -90,7 +91,9 @@ void UsbTask(void *pvParameters) {
     USB.begin();
 
     delay(1000);
+#pragma endregion
 
+#pragma region ループ部
     for (;;) {
         log_d("test: axises");
         testAxises16();
@@ -105,6 +108,9 @@ void UsbTask(void *pvParameters) {
         delay(1000);
         // gamepad.setButtons(0x12725277);
     }
+#pragma endregion
+
+    // タスク削除
     vTaskDelete(NULL);
 }
 #pragma endregion
