@@ -3,16 +3,17 @@
 #include <Settings.h>
 #include <array>
 
+using std::array;
 using namespace Settings::Input;
 using namespace Settings::Pins;
 
 namespace {
 /// @brief スキャンするGPIOのピン配列
-PinNumMatrix pinNumMatrix = {
-    {{Settings::Pins::COL0, Settings::Pins::COL1, Settings::Pins::COL2,
-      Settings::Pins::COL3, Settings::Pins::COL4, Settings::Pins::COL5},
-     {Settings::Pins::ROW0, Settings::Pins::ROW1, Settings::Pins::ROW2,
-      Settings::Pins::ROW3, Settings::Pins::ROW4, Settings::Pins::ROW5}}};
+PinNumMatrix pinNumMatrix = PinNumMatrix(
+    {{{Settings::Pins::COL0, Settings::Pins::COL1, Settings::Pins::COL2,
+       Settings::Pins::COL3, Settings::Pins::COL4, Settings::Pins::COL5},
+      {Settings::Pins::ROW0, Settings::Pins::ROW1, Settings::Pins::ROW2,
+       Settings::Pins::ROW3, Settings::Pins::ROW4, Settings::Pins::ROW5}}});
 } // namespace
 
 /// @brief ピンをスキャンするタスク
@@ -33,11 +34,11 @@ void PinScanTask(void *pvParameters) {
     delay(1000);
 
     // 読み取り値の一時保存先
-    std::array<bool, SWITCH> valNumMatrixStore = {
-        false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false};
+    array<bool, SWITCH> valNumMatrixStore = array<bool, SWITCH>(
+        {false, false, false, false, false, false, false, false, false,
+         false, false, false, false, false, false, false, false, false,
+         false, false, false, false, false, false, false, false, false,
+         false, false, false, false, false, false, false, false, false});
 
     log_d("Start pin Scan");
 #pragma endregion
@@ -47,11 +48,11 @@ void PinScanTask(void *pvParameters) {
         // esp_task_wdt_reset();
 
         // 読み取り値の一時保存先
-        std::array<bool, SWITCH> valNumMatrix = {
-            false, false, false, false, false, false, false, false, false,
-            false, false, false, false, false, false, false, false, false,
-            false, false, false, false, false, false, false, false, false,
-            false, false, false, false, false, false, false, false, false};
+        array<bool, SWITCH> valNumMatrix = array<bool, SWITCH>(
+            {false, false, false, false, false, false, false, false, false,
+             false, false, false, false, false, false, false, false, false,
+             false, false, false, false, false, false, false, false, false,
+             false, false, false, false, false, false, false, false, false});
 
         // スキャン後変化有無
         bool isChanged = false;
