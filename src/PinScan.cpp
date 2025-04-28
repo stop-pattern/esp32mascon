@@ -34,10 +34,10 @@ void PinScanTask(void *pvParameters) {
 
     // 読み取り値の一時保存先
     std::array<bool, SWITCH> valNumMatrixStore = {
-        {false, false, false, false, false, false, false, false, false,
-         false, false, false, false, false, false, false, false, false,
-         false, false, false, false, false, false, false, false, false,
-         false, false, false, false, false, false, false, false, false}};
+        false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false};
 
     log_d("Start pin Scan");
 #pragma endregion
@@ -48,10 +48,10 @@ void PinScanTask(void *pvParameters) {
 
         // 読み取り値の一時保存先
         std::array<bool, SWITCH> valNumMatrix = {
-            {false, false, false, false, false, false, false, false, false,
-             false, false, false, false, false, false, false, false, false,
-             false, false, false, false, false, false, false, false, false,
-             false, false, false, false, false, false, false, false, false}};
+            false, false, false, false, false, false, false, false, false,
+            false, false, false, false, false, false, false, false, false,
+            false, false, false, false, false, false, false, false, false,
+            false, false, false, false, false, false, false, false, false};
 
         // スキャン後変化有無
         bool isChanged = false;
