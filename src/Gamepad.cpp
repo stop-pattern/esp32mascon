@@ -5,7 +5,7 @@
 #include "Descriptor.h"
 #include "Gamepad.h"
 
-static const uint8_t report_descriptor[] = {
+constexpr uint8_t report_descriptor[] = {
     HID_REPORT_DESC_GAMEPAD(HID_REPORT_ID(HID_REPORT_ID_GAMEPAD))};
 
 Gamepad::Gamepad()
