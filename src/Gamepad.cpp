@@ -18,7 +18,7 @@ Gamepad::Gamepad()
     }
 }
 
-uint16_t Gamepad::_onGetDescriptor(uint8_t *dst) {
+uint16_t Gamepad::_onGetDescriptor(uint8_t *dst) const {
     memcpy(dst, report_descriptor, sizeof(report_descriptor));
     return sizeof(report_descriptor);
 }
@@ -28,16 +28,16 @@ void Gamepad::begin() { hid.begin(); }
 void Gamepad::end() { hid.end(); }
 
 bool Gamepad::write() {
-    gamepad_report_t report = {.x = _x,
-                               .y = _y,
-                               .z = _z,
-                               .rx = _rx,
-                               .ry = _ry,
-                               .rz = _rz,
-                               .slider = _slider,
-                               .dial = _dial,
-                               .hat = _hat,
-                               .buttons = _buttons};
+    const gamepad_report_t report{.x = _x,
+                                  .y = _y,
+                                  .z = _z,
+                                  .rx = _rx,
+                                  .ry = _ry,
+                                  .rz = _rz,
+                                  .slider = _slider,
+                                  .dial = _dial,
+                                  .hat = _hat,
+                                  .buttons = _buttons};
     return hid.SendReport(HID_REPORT_ID_GAMEPAD, &report, sizeof(report));
 }
 

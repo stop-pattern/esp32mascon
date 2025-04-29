@@ -224,7 +224,7 @@ public:
      * @param buffer Pointer to the buffer where the descriptor will be stored.
      * @return uint16_t The length of the HID descriptor.
      */
-    uint16_t _onGetDescriptor(uint8_t* buffer);
+    uint16_t _onGetDescriptor(uint8_t* buffer) const;
 
     /**
      * @brief Sets all analog axes of the gamepad.
