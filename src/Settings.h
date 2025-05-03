@@ -7,6 +7,7 @@
 /// @brief 設定を格納する名前空間
 namespace Settings {
 
+#pragma region USB関連
 /// @brief USB関連
 namespace USB {
 /// @brief ベンダーID
@@ -43,8 +44,10 @@ constexpr const char *PRODUCT_NAME = "ESP32S3 USB Gamepad";
 constexpr const char *MANUFACTURER_NAME =
     "stop-pattern: contact@hollyelectric.net";
 } // namespace USB
+#pragma endregion
 
 
+#pragma region HID関連
 /// @brief ゲームパッドのインターフェース
 namespace Interface {
     /// @brief Number of available axes
@@ -56,8 +59,10 @@ namespace Interface {
     /// @brief Number of available hat switches
     constexpr size_t HAT = 4;
 } // namespace Interface
+#pragma endregion
 
 
+#pragma region GPIO設定
 /// @brief GPIOのピン
 // todo: ピン番号の初期値を決める
 namespace Pins {
@@ -121,8 +126,10 @@ constexpr gpio_num_t COL4 = GPIO_NUM_10;
 /// @note default: 1
 constexpr gpio_num_t COL5 = GPIO_NUM_11;
 } // namespace Pins
+#pragma endregion
 
 
+#pragma region 入力ピンの設定
 /// @brief 入力GPIOのピンの設定
 namespace Input {
     /// @brief Number of available buttons switches
@@ -141,6 +148,7 @@ namespace Input {
         MatrixIndex_MAX
     };
 } // namespace Input
+#pragma endregion
 
 
 #pragma region Pins
