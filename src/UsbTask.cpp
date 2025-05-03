@@ -1,5 +1,6 @@
 #include "UsbTask.h"
 #include "Gamepad.h"
+#include "Mascon.h"
 #include "Settings.h"
 #include <Arduino.h>
 #include <USB.h>
@@ -10,7 +11,12 @@ using namespace Settings::USB;
 namespace {
 /// @brief ゲームパッドのラッパー
 Gamepad gamepad;
-// USBHIDGamepad gamepad;
+
+/// @brief セマフォハンドル
+SemaphoreHandle_t timerSemaphore = xSemaphoreCreateBinary();
+
+/// @brief セマフォハンドル
+SemaphoreHandle_t gamepadSemaphore = xSemaphoreCreateBinary();
 } // namespace
 
 #pragma region デモ用関数群
@@ -79,11 +85,10 @@ void test() {
 }
 #pragma endregion
 
-#pragma region タスク
+#pragma region UsbTask
 /// @brief USBを制御するタスク
 /// @param pvParameters
 void UsbTask(void *pvParameters) {
-#pragma region ループ部
     Serial.begin(115200);
     log_d("setup");
 
@@ -103,15 +108,43 @@ void UsbTask(void *pvParameters) {
     USB.begin();
 
     delay(1000);
+
+    for (;;) {
+        if (xSemaphoreTake(gamepadSemaphore, 1) == pdTRUE) {
+            gamepad.write();
+        }
+    }
+
+    // タスク削除
+    vTaskDelete(NULL);
+}
 #pragma endregion
 
-#pragma region ループ部
-    for (;;) {
-        test();
-        delay(1000);
-        // gamepad.setButtons(0x12725277);
-    }
+#pragma region onTimer
+void IRAM_ATTR onTimer() {
+    // タイマー割り込みが発生したらセマフォを通してSamplingTaskに通知
+    xSemaphoreGiveFromISR(timerSemaphore, NULL);
+}
 #pragma endregion
+
+#pragma region SamplingTask
+void SamplingTask(void *pvParameters) {
+    auto mascon = Mascon();
+    mascon.setupPins();
+    for (;;) {
+        // セマフォを取得するまで待機
+        if (xSemaphoreTake(timerSemaphore, 1) == pdTRUE) {
+            // GPIOの状態を読み取る
+            bool ischanged = mascon.samplingPins();
+            if (ischanged) {
+                // 変化があった場合、USBに送信する
+                gamepad.setAxes(mascon.getPowerNotchInt16(),
+                                mascon.getReverserInt16(),
+                                mascon.getBrakeNotchInt16(), 0, 0, 0);
+                xSemaphoreGive(gamepadSemaphore);
+            }
+        }
+    }
 
     // タスク削除
     vTaskDelete(NULL);

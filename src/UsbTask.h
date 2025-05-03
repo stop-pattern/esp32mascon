@@ -22,4 +22,11 @@ void testHats();
 /// @param pvParameters 
 void UsbTask(void *pvParameters);
 
+/// @brief タイマー割り込みハンドラ
+void onTimer();
+
+/// @brief 各ピンの状態を読み取るタスク
+/// @param pvParameters 
+void SamplingTask(void *pvParameters);
+
 #endif // USBTASK_H
