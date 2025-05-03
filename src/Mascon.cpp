@@ -17,6 +17,13 @@ Mascon::Mascon() {
 
 Mascon::~Mascon() {}
 
+void Mascon::setupPins() const {
+    for (auto &&i : pinNums) {
+        pinMode(i, INPUT_PULLUP);
+        log_d("Pin %d sets as INPUT_PULLUP", i);
+    }
+}
+
 bool Mascon::samplingPins() {
     // スキャン後変化有無
     bool isChanged = false;
