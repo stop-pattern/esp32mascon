@@ -239,7 +239,7 @@ public:
      * @param ry The right trigger analog value.
      * @return true if the axes were successfully updated, false otherwise.
      */
-    bool setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx, int16_t ry);
+    void setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx, int16_t ry);
 
     /**
      * @brief Sets all analog axes of the gamepad.
@@ -256,7 +256,7 @@ public:
      * @param dial The dial value.
      * @return true if the axes were successfully updated, false otherwise.
      */
-    bool setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx, int16_t ry, int16_t slider, int16_t dial);
+    void setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx, int16_t ry, int16_t slider, int16_t dial);
 
     /**
      * @brief Sets the left analog stick x-axis value.
@@ -264,7 +264,7 @@ public:
      * @param x The new x-axis value.
      * @return true if the x-axis was successfully updated, false otherwise.
      */
-    bool setAxesX(int16_t x);
+    void setAxesX(int16_t x);
 
     /**
      * @brief Sets the left analog stick y-axis value.
@@ -272,7 +272,7 @@ public:
      * @param y The new y-axis value.
      * @return true if the y-axis was successfully updated, false otherwise.
      */
-    bool setAxesY(int16_t y);
+    void setAxesY(int16_t y);
 
     /**
      * @brief Sets the right analog stick z-axis value.
@@ -280,7 +280,7 @@ public:
      * @param z The new z-axis value.
      * @return true if the z-axis was successfully updated, false otherwise.
      */
-    bool setAxesZ(int16_t z);
+    void setAxesZ(int16_t z);
 
     /**
      * @brief Sets the right analog stick Rz-axis value.
@@ -288,7 +288,7 @@ public:
      * @param rz The new Rz-axis value.
      * @return true if the Rz-axis was successfully updated, false otherwise.
      */
-    bool setAxesRz(int16_t rz);
+    void setAxesRz(int16_t rz);
 
     /**
      * @brief Sets the left trigger analog value.
@@ -296,7 +296,7 @@ public:
      * @param rx The new left trigger value.
      * @return true if the left trigger value was successfully updated, false otherwise.
      */
-    bool setAxesRx(int16_t rx);
+    void setAxesRx(int16_t rx);
 
     /**
      * @brief Sets the right trigger analog value.
@@ -304,7 +304,7 @@ public:
      * @param ry The new right trigger value.
      * @return true if the right trigger value was successfully updated, false otherwise.
      */
-    bool setAxesRy(int16_t ry);
+    void setAxesRy(int16_t ry);
 
     /**
      * @brief Sets the slider value.
@@ -312,7 +312,7 @@ public:
      * @param slider The new slider value.
      * @return true if the slider value was successfully updated, false otherwise.
      */
-    bool setSlider(int16_t slider);
+    void setSlider(int16_t slider);
 
     /**
      * @brief Sets the dial value.
@@ -320,7 +320,7 @@ public:
      * @param dial The new dial value.
      * @return true if the dial value was successfully updated, false otherwise.
      */
-    bool setDial(int16_t dial);
+    void setDial(int16_t dial);
 
     /**
      * @brief Sets the DPad/hat state of the gamepad.
@@ -328,7 +328,7 @@ public:
      * @param hat The new hat state.
      * @return true if the hat state was successfully updated, false otherwise.
      */
-    bool setHat(uint8_t hat);
+    void setHat(uint8_t hat);
 
     /**
      * @brief Sets the state of an individual button.
@@ -337,7 +337,7 @@ public:
      * @param pressed True to mark the button as pressed, false to release it.
      * @return true if the button state was successfully updated, false otherwise.
      */
-    bool setButton(uint8_t button, bool pressed);
+    void setButton(uint8_t button, bool pressed);
 
     /**
      * @brief Sets the state of all buttons.
@@ -347,7 +347,7 @@ public:
      * @param buttons A bitmask representing the desired state of each button.
      * @return true if the buttons state was successfully updated, false otherwise.
      */
-    bool setButtons(uint32_t buttons);
+    void setButtons(uint32_t buttons);
 };
 
 #endif // CONFIG_TINYUSB_HID_ENABLED

@@ -44,19 +44,23 @@ bool Gamepad::write() {
 bool Gamepad::leftStick(int16_t x, int16_t y) {
     _x = x;
     _y = y;
+    return write();
 }
 
 bool Gamepad::rightStick(int16_t z, int16_t rz) {
     _z = z;
     _rz = rz;
+    return write();
 }
 
 bool Gamepad::leftTrigger(int16_t rx) {
     _rx = rx;
+    return write();
 }
 
 bool Gamepad::rightTrigger(int16_t ry) {
     _ry = ry;
+    return write();
 }
 
 bool Gamepad::hat(uint8_t hat) {
@@ -64,6 +68,7 @@ bool Gamepad::hat(uint8_t hat) {
         return false;
     }
     _hat = hat;
+    return write();
 }
 
 bool Gamepad::pressButton(uint8_t button) {
@@ -71,6 +76,7 @@ bool Gamepad::pressButton(uint8_t button) {
         return false;
     }
     _buttons |= (1 << button);
+    return write();
 }
 
 bool Gamepad::releaseButton(uint8_t button) {
@@ -78,6 +84,7 @@ bool Gamepad::releaseButton(uint8_t button) {
         return false;
     }
     _buttons &= ~(1 << button);
+    return write();
 }
 
 bool Gamepad::send(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
@@ -93,6 +100,7 @@ bool Gamepad::send(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
     _ry = ry;
     _hat = hat;
     _buttons = buttons;
+    return write();
 }
 
 bool Gamepad::send(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
@@ -111,9 +119,10 @@ bool Gamepad::send(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
     _dial = dial;
     _hat = hat;
     _buttons = buttons;
+    return write();
 }
 
-bool Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
+void Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
                       int16_t ry) {
     _x = x;
     _y = y;
@@ -123,7 +132,7 @@ bool Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
     _ry = ry;
 }
 
-bool Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
+void Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
                       int16_t ry, int16_t slider, int16_t dial) {
     _x = x;
     _y = y;
@@ -135,45 +144,45 @@ bool Gamepad::setAxes(int16_t x, int16_t y, int16_t z, int16_t rz, int16_t rx,
     _dial = dial;
 }
 
-bool Gamepad::setAxesX(int16_t x) {
+void Gamepad::setAxesX(int16_t x) {
     _x = x;
 }
 
-bool Gamepad::setAxesY(int16_t y) {
+void Gamepad::setAxesY(int16_t y) {
     _y = y;
 }
 
-bool Gamepad::setAxesZ(int16_t z) {
+void Gamepad::setAxesZ(int16_t z) {
     _z = z;
 }
 
-bool Gamepad::setAxesRz(int16_t rz) {
+void Gamepad::setAxesRz(int16_t rz) {
     _rz = rz;
 }
 
-bool Gamepad::setAxesRx(int16_t rx) {
+void Gamepad::setAxesRx(int16_t rx) {
     _rx = rx;
 }
 
-bool Gamepad::setAxesRy(int16_t ry) {
+void Gamepad::setAxesRy(int16_t ry) {
     _ry = ry;
 }
 
-bool Gamepad::setSlider(int16_t slider) {
+void Gamepad::setSlider(int16_t slider) {
     _slider = slider;
 }
 
-bool Gamepad::setDial(int16_t dial) {
+void Gamepad::setDial(int16_t dial) {
     _dial = dial;
 }
 
-bool Gamepad::setHat(uint8_t hat) {
+void Gamepad::setHat(uint8_t hat) {
     _hat = hat;
 }
 
-bool Gamepad::setButton(uint8_t button, bool pressed) {
+void Gamepad::setButton(uint8_t button, bool pressed) {
     if (button > 31) {
-        return false;
+        return;
     }
     if (pressed) {
         _buttons |= (pressed << button);
@@ -182,7 +191,7 @@ bool Gamepad::setButton(uint8_t button, bool pressed) {
     }
 }
 
-bool Gamepad::setButtons(uint32_t buttons) {
+void Gamepad::setButtons(uint32_t buttons) {
     _buttons = buttons;
 }
 
