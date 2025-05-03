@@ -47,20 +47,20 @@ bool Mascon::samplingPins() {
     return isChanged;
 }
 
-int32_t Mascon::getReverserInt32() const {
+int16_t Mascon::getReverserInt16() const {
     // 入力をビット列で取得
     uint8_t status = pinStatusStore.at(OUTPUT_VALUE).at(R_F) << 0 |
                      pinStatusStore.at(OUTPUT_VALUE).at(R_R) << 1;
 
     // レバーサー
-    int32_t reverser = 0;
+    int16_t reverser = 0;
     switch (status) {
     case 0b10: // 前進
-        reverser = INT32_MAX;
+        reverser = INT16_MAX;
         log_d("Reverser: F");
         break;
     case 0b01: // 後退
-        reverser = INT32_MIN;
+        reverser = INT16_MIN;
         log_d("Reverser: R");
         break;
     case 0b11: // 中立
@@ -73,7 +73,7 @@ int32_t Mascon::getReverserInt32() const {
     return reverser;
 }
 
-int32_t Mascon::getPowerNotchInt32() const {
+int16_t Mascon::getPowerNotchInt16() const {
     // 入力をビット列で取得
     uint8_t status = pinStatusStore.at(OUTPUT_VALUE).at(P_1) << 0 |
                      pinStatusStore.at(OUTPUT_VALUE).at(P_2) << 1 |
@@ -111,11 +111,11 @@ int32_t Mascon::getPowerNotchInt32() const {
         break;
     }
 
-    // ノッチ数を-32767から32768までの値に変換
-    return static_cast<int32_t>(INT32_MAX * powerNotch / POWERNOTCH_MAX);
+    // 0からINT16_MAXまでの値に変換
+    return static_cast<int16_t>(INT16_MAX * powerNotch / POWERNOTCH_MAX);
 }
 
-int32_t Mascon::getBrakeNotchInt32() const {
+int16_t Mascon::getBrakeNotchInt16() const {
     // 入力をビット列で取得
     // 赤x：1
     // 青o：0
@@ -173,7 +173,7 @@ int32_t Mascon::getBrakeNotchInt32() const {
         break;
     }
 
-    // ノッチ数を-32767から32768までの値に変換
-    return static_cast<int32_t>(INT32_MAX * brakeNotch / BRAKENOTCH_MAX);
+    // 0からINT16_MAXまでの値に変換
+    return static_cast<int16_t>(INT16_MAX * brakeNotch / BRAKENOTCH_MAX);
 }
 #pragma endregion

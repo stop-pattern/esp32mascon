@@ -38,21 +38,21 @@ class Mascon {
     /**
      * @brief レバーサーの状態を取得
      * @return レバーサーの状態
-     * @note 前進：INT32_MAX、後進：INT32_MIN、中立：0
+     * @note 前進：INT16_MAX、後進：INT16_MIN、中立：0
      */
-    int32_t getReverserInt32() const;
+    int16_t getReverserInt16() const;
 
     /**
      * @brief パワーノッチの状態を取得
      * @return パワーノッチの状態
-     * @note INT32_MINからINT32_MAXまでの値に変換
+     * @note INT16_MINからINT16_MAXまでの値に変換
      */
-    int32_t getPowerNotchInt32() const;
+    int16_t getPowerNotchInt16() const;
 
     /**
      * @brief ブレーキノッチの状態を取得
      * @return ブレーキノッチの状態
-     * @note -INT32_MINからINT32_MAXまでの値に変換
+     * @note -INT16_MINからINT16_MAXまでの値に変換
      */
-    int32_t getBrakeNotchInt32() const;
+    int16_t getBrakeNotchInt16() const;
 };
