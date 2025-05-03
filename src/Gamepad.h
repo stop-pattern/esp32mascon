@@ -87,15 +87,6 @@ private:
      */
     uint32_t _buttons;
 
-    /**
-     * @brief Writes the current state to the USB HID device.
-     *
-     * Internal use function that sends the updated gamepad state.
-     *
-     * @return true if the data was successfully sent, false otherwise.
-     */
-    bool write();
-
 public:
     /**
      * @brief Constructs a new Gamepad object.
@@ -112,6 +103,15 @@ public:
      * @brief Terminates the gamepad's USB HID communication.
      */
     void end(void);
+
+    /**
+     * @brief Writes the current state to the USB HID device.
+     *
+     * Internal use function that sends the updated gamepad state.
+     *
+     * @return true if the data was successfully sent, false otherwise.
+     */
+    bool write();
 
     /**
      * @brief Updates the left analog stick position.
