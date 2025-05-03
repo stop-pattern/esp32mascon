@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <array>
 #include <driver/gpio.h>
 
 /// @brief 設定を格納する名前空間
@@ -140,5 +141,50 @@ namespace Input {
         MatrixIndex_MAX
     };
 } // namespace Input
+
+
+#pragma region Pins
+namespace Pins {
+// GPIOピン名の列挙体
+enum PinName {
+    B_EB = 0,    // ブレーキ：非常
+    B_NB,        // ブレーキ：常用
+    B_YB,        // ブレーキ：抑速
+    B_1_5_6_7,   // ブレーキ：1,5-7
+    B_1_2_3_6_7, // ブレーキ：1-3,6-7
+    B_3_4_5_6_7, // ブレーキ：3-7
+    B_7,         // ブレーキ：7
+    P_1,         // ノッチ：1
+    P_2,         // ノッチ：2
+    P_3,         // ノッチ：3
+    P_4,         // ノッチ：4
+    P_5,         // ノッチ：5
+    R_F,         // レバーサー：前
+    R_R,         // レバーサー：後
+    SW_KEY,      // マスコンキー
+    SW_ZT,       // 前灯
+    SW_GK,       // 減光
+    PINNAME_MAX
+};
+
+/**
+ * @brief 配列の役割を示す列挙体
+ * @details pinStatusStoreのインデックスを示す
+ * @see Mascon::pinStatusStore
+ */
+enum ArrayName {
+    CURRENT = 0,  // 現在の値
+    PREVIOUS,     // 前の値
+    OUTPUT_VALUE, // 出力に使用する値
+    ARRAYNAME_MAX,
+};
+
+// GPIOピン番号の配列
+const std::array<gpio_num_t, PINNAME_MAX> pinNums = {
+    GPIO_NUM_0,  GPIO_NUM_1,  GPIO_NUM_2,  GPIO_NUM_3, GPIO_NUM_4,  GPIO_NUM_5,
+    GPIO_NUM_6,  GPIO_NUM_7,  GPIO_NUM_8,  GPIO_NUM_9, GPIO_NUM_10, GPIO_NUM_11,
+    GPIO_NUM_12, GPIO_NUM_13, GPIO_NUM_14, GPIO_NUM_15};
+} // namespace Pins
+#pragma endregion
 
 } // namespace Settings
