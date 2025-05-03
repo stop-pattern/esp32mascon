@@ -27,7 +27,7 @@ class Mascon {
     /**
      * @brief ピンの初期化
      */
-    void setupPins() const;
+    void setupPins();
 
     /**
      * @brief ピンのスキャン

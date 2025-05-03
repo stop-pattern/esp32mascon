@@ -17,10 +17,14 @@ Mascon::Mascon() {
 
 Mascon::~Mascon() {}
 
-void Mascon::setupPins() const {
+void Mascon::setupPins() {
     for (auto &&i : pinNums) {
         pinMode(i, INPUT_PULLUP);
         log_d("Pin %d sets as INPUT_PULLUP", i);
+    }
+
+    for (size_t i = 0; i < pinStatusStore.size(); i++) {
+        samplingPins();
     }
 }
 
