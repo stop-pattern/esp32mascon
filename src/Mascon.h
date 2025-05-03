@@ -8,12 +8,10 @@ class Mascon {
     // GPIOピンの状態を格納する配列
     std::array<std::array<bool, Settings::Pins::PINNAME_MAX>, Settings::Pins::ARRAYNAME_MAX> pinStatusStore;
 
-    // スキャン周期の分解能
-    constexpr static size_t DEVIDER = 16;
     // ノッチ最大値
     constexpr static uint8_t POWERNOTCH_MAX = 5;
     // ブレーキ最大値（抑速・非常含む）
-    constexpr static uint8_t BRAKENOTCH_MAX = 7;
+    constexpr static uint8_t BRAKENOTCH_MAX = 9;
 
   public:
     /**

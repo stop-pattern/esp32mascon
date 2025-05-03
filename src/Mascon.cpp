@@ -30,6 +30,7 @@ bool Mascon::samplingPins() {
     // スキャン
     for (size_t i = 0; i < PINNAME_MAX; i++) {
         pinStatusStore.at(CURRENT).at(i) = digitalRead(pinNums.at(i));
+        log_d("Pin %d: %d", pinNums.at(i), pinStatusStore.at(CURRENT).at(i));
     }
 
     // スキャン結果比較
@@ -56,15 +57,19 @@ int32_t Mascon::getReverserInt32() const {
     switch (status) {
     case 0b10: // 前進
         reverser = INT32_MAX;
+        log_d("Reverser: F");
         break;
     case 0b01: // 後退
         reverser = INT32_MIN;
+        log_d("Reverser: R");
         break;
-    default: // 中立
+    case 0b11: // 中立
+    default:
         reverser = 0;
+        log_d("Reverser: N");
         break;
     }
-    
+
     return reverser;
 }
 
@@ -81,21 +86,28 @@ int32_t Mascon::getPowerNotchInt32() const {
     switch (status) {
     case 0b00000: // P5
         powerNotch = 5;
+        log_d("Power Notch: P5");
         break;
     case 0b10000: // P4
         powerNotch = 4;
+        log_d("Power Notch: P4");
         break;
     case 0b11000: // P3
         powerNotch = 3;
+        log_d("Power Notch: P3");
         break;
     case 0b11100: // P2
         powerNotch = 2;
+        log_d("Power Notch: P2");
         break;
     case 0b11110: // P1
         powerNotch = 1;
+        log_d("Power Notch: P1");
         break;
-    default: // P0
+    case 0b11111: // P0
+    default:
         powerNotch = 0;
+        log_d("Power Notch: P0");
         break;
     }
 
@@ -120,36 +132,44 @@ int32_t Mascon::getBrakeNotchInt32() const {
     switch (status) {
     case 0b1111111: // B0
         brakeNotch = 0;
+        log_d("Brake Notch: B0");
         break;
     case 0b1111011: // YB
         brakeNotch = 1;
+        log_d("Brake Notch: YB");
         break;
     case 0b1100101: // B1
         brakeNotch = 2;
+        log_d("Brake Notch: B1");
         break;
     case 0b1101101: // B2
         brakeNotch = 3;
+        log_d("Brake Notch: B2");
         break;
     case 0b1001101: // B3
         brakeNotch = 4;
+        log_d("Brake Notch: B3");
         break;
     case 0b1011101: // B4
         brakeNotch = 5;
+        log_d("Brake Notch: B4");
         break;
     case 0b1010101: // B5
         brakeNotch = 6;
+        log_d("Brake Notch: B5");
         break;
     case 0b1000101: // B6
         brakeNotch = 7;
+        log_d("Brake Notch: B6");
         break;
     case 0b0000101: // B7
         brakeNotch = 8;
+        log_d("Brake Notch: B7");
         break;
     case 0b1111110: // EB
+    default:
         brakeNotch = 9;
-        break;
-    default: // EB
-        brakeNotch = 9;
+        log_d("Brake Notch: EB");
         break;
     }
 
