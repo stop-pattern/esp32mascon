@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cstdint>
 #include <array>
+#include <cstdint>
 #include <driver/gpio.h>
 
 /// @brief 設定を格納する名前空間
@@ -46,21 +46,19 @@ constexpr const char *MANUFACTURER_NAME =
 } // namespace USB
 #pragma endregion
 
-
 #pragma region HID関連
 /// @brief ゲームパッドのインターフェース
 namespace Interface {
-    /// @brief Number of available axes
-    constexpr size_t AXIS = 8;
+/// @brief Number of available axes
+constexpr size_t AXIS = 8;
 
-    /// @brief Number of available push switches
-    constexpr size_t BUTTON = 32;
+/// @brief Number of available push switches
+constexpr size_t BUTTON = 32;
 
-    /// @brief Number of available hat switches
-    constexpr size_t HAT = 4;
+/// @brief Number of available hat switches
+constexpr size_t HAT = 4;
 } // namespace Interface
 #pragma endregion
-
 
 #pragma region GPIO設定
 /// @brief GPIOのピン
@@ -128,31 +126,28 @@ constexpr gpio_num_t COL5 = GPIO_NUM_11;
 } // namespace Pins
 #pragma endregion
 
-
 #pragma region 入力ピンの設定
 /// @brief 入力GPIOのピンの設定
 namespace Input {
-    /// @brief Number of available buttons switches
-    constexpr size_t SWITCH = Interface::BUTTON + Interface::HAT;
+/// @brief Number of available buttons switches
+constexpr size_t SWITCH = Interface::BUTTON + Interface::HAT;
 
-    /// @brief 
-    // constexpr size_t MatrixIndex_MAX = 6;
+/// @brief
+// constexpr size_t MatrixIndex_MAX = 6;
 
-    /// @brief 行/列の長さ
-    constexpr size_t ROW_COLUMN_COUNT = 6;
+/// @brief 行/列の長さ
+constexpr size_t ROW_COLUMN_COUNT = 6;
 
-    /// @brief 行/列のインデックス
-    enum MatrixIndex : size_t {
-        COLUMN,
-        ROW,
-        MatrixIndex_MAX
-    };
+/// @brief 行/列のインデックス
+enum MatrixIndex : size_t { COLUMN, ROW, MatrixIndex_MAX };
 } // namespace Input
 #pragma endregion
 
-
 #pragma region Pins
 namespace Pins {
+constexpr gpio_num_t LED_R = GPIO_NUM_1;
+constexpr gpio_num_t LED_G = GPIO_NUM_2;
+
 // GPIOピン名の列挙体
 enum PinName {
     B_EB = 0,    // ブレーキ：非常
@@ -189,9 +184,24 @@ enum ArrayName {
 
 // GPIOピン番号の配列
 const std::array<gpio_num_t, PINNAME_MAX> pinNums = {
-    GPIO_NUM_0,  GPIO_NUM_1,  GPIO_NUM_2,  GPIO_NUM_3, GPIO_NUM_4,  GPIO_NUM_5,
-    GPIO_NUM_6,  GPIO_NUM_7,  GPIO_NUM_8,  GPIO_NUM_9, GPIO_NUM_10, GPIO_NUM_11,
-    GPIO_NUM_12, GPIO_NUM_13, GPIO_NUM_14, GPIO_NUM_15};
+    GPIO_NUM_4,  // B_EB
+    GPIO_NUM_5,  // B_NB
+    GPIO_NUM_6,  // B_YB
+    GPIO_NUM_7,  // B_1_5_6_7
+    GPIO_NUM_15, // B_1_2_3_6_7
+    GPIO_NUM_16, // B_3_4_5_6_7
+    GPIO_NUM_17, // B_7
+    GPIO_NUM_18, // P_1
+    GPIO_NUM_8,  // P_2
+    GPIO_NUM_9,  // P_3
+    GPIO_NUM_10, // P_4
+    GPIO_NUM_11, // P_5
+    GPIO_NUM_47, // R_F
+    GPIO_NUM_21, // R_R
+    GPIO_NUM_12, // SW_KEY
+    GPIO_NUM_13, // SW_ZT
+    GPIO_NUM_14  // SW_GK
+};
 } // namespace Pins
 #pragma endregion
 
