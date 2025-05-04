@@ -41,7 +41,7 @@ bool Mascon::samplingPins() {
     // スキャン
     for (size_t i = 0; i < PINNAME_MAX; i++) {
         pinStatusStore.at(CURRENT).at(i) = digitalRead(pinNums.at(i));
-        log_d("Pin %d: %d", pinNums.at(i), pinStatusStore.at(CURRENT).at(i));
+        log_d("Pin %d:\t%d", pinNums.at(i), pinStatusStore.at(CURRENT).at(i));
     }
 
     // スキャン結果比較
