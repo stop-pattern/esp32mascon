@@ -187,4 +187,14 @@ int16_t Mascon::getBrakeNotchInt16() const {
     // 0からINT16_MAXまでの値に変換
     return static_cast<int16_t>(INT16_MAX * brakeNotch / BRAKENOTCH_MAX);
 }
+
+uint32_t Mascon::getButtonInt32() const {
+    // 入力をビット列で取得
+    uint32_t status = pinStatusStore.at(OUTPUT_VALUE).at(SW_KEY) << 0 |
+                      pinStatusStore.at(OUTPUT_VALUE).at(SW_ZT) << 1 |
+                      pinStatusStore.at(OUTPUT_VALUE).at(SW_GK) << 2 ;
+
+    // 0からINT16_MAXまでの値に変換
+    return static_cast<uint32_t>(status);
+}
 #pragma endregion

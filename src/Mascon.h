@@ -55,4 +55,11 @@ class Mascon {
      * @note -INT16_MINからINT16_MAXまでの値に変換
      */
     int16_t getBrakeNotchInt16() const;
+
+    /**
+     * @brief ボタンの状態を取得
+     * @return ボタンの状態
+     * @note 0からUINT32_MAXまでの値に変換
+     */
+    uint32_t getButtonInt32() const;
 };

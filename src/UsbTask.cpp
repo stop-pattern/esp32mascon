@@ -144,6 +144,7 @@ void SamplingTask(void *pvParameters) {
                 gamepad.setAxes(mascon.getPowerNotchInt16(),
                                 mascon.getReverserInt16(),
                                 mascon.getBrakeNotchInt16(), 0, 0, 0);
+                gamepad.setButtons(mascon.getButtonInt32());
                 xSemaphoreGive(gamepadSemaphore);
             }
             digitalWrite(Settings::Pins::LED_G, LOW);
