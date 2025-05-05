@@ -18,7 +18,7 @@ Gamepad::Gamepad()
     }
 }
 
-uint16_t Gamepad::_onGetDescriptor(uint8_t *dst) const {
+uint16_t Gamepad::_onGetDescriptor(uint8_t *dst) {
     memcpy(dst, report_descriptor, sizeof(report_descriptor));
     return sizeof(report_descriptor);
 }
