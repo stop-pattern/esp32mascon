@@ -96,6 +96,8 @@ void PinScanTask(void *pvParameters) {
             // someFlag = true;
             // portEXIT_CRITICAL_ISR(&mutex);
         }
+        
+        delay(1);
     }
 #pragma endregion
 

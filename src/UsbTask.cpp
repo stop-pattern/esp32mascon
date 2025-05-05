@@ -113,6 +113,7 @@ void UsbTask(void *pvParameters) {
         if (xSemaphoreTake(gamepadSemaphore, 1) == pdTRUE) {
             gamepad.write();
         }
+        delay(1);
     }
 
     // タスク削除
@@ -147,6 +148,7 @@ void SamplingTask(void *pvParameters) {
             }
             digitalWrite(Settings::Pins::LED_G, LOW);
         }
+        delay(1);
     }
 
     // タスク削除
