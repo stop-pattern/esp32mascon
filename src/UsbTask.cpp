@@ -131,9 +131,11 @@ void IRAM_ATTR onTimer() {
 void SamplingTask(void *pvParameters) {
     auto mascon = Mascon();
     mascon.setupPins();
+
     for (;;) {
         // セマフォを取得するまで待機
         if (xSemaphoreTake(timerSemaphore, 1) == pdTRUE) {
+            digitalWrite(Settings::Pins::LED_G, HIGH);
             // GPIOの状態を読み取る
             bool ischanged = mascon.samplingPins();
             if (ischanged) {
@@ -143,6 +145,7 @@ void SamplingTask(void *pvParameters) {
                                 mascon.getBrakeNotchInt16(), 0, 0, 0);
                 xSemaphoreGive(gamepadSemaphore);
             }
+            digitalWrite(Settings::Pins::LED_G, LOW);
         }
     }
 
