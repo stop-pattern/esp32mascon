@@ -5,6 +5,12 @@
 
 class Mascon {
   private:
+    /**
+     * @brief 前回のブレーキノッチの値
+     * @note 0からBRAKENOTCH_MAXまでの値
+     */
+    mutable uint8_t prevBrakeNotch;
+
     // GPIOピンの状態を格納する配列
     std::array<std::array<bool, Settings::Pins::PINNAME_MAX>, Settings::Pins::ARRAYNAME_MAX> pinStatusStore;
 

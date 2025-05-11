@@ -13,6 +13,8 @@ Mascon::Mascon() {
     for (auto &&i : pinStatusStore) {
         i.fill(true);
     }
+
+    prevBrakeNotch = BRAKENOTCH_MAX;
 }
 
 Mascon::~Mascon() {}
@@ -177,11 +179,28 @@ int16_t Mascon::getBrakeNotchInt16() const {
         brakeNotch = 8;
         log_d("Brake Notch: B7");
         break;
-    case 0b1111110: // EB
     default:
+        // B7-EB遷移時のチャタ対策
+        if (prevBrakeNotch) {
+            brakeNotch = prevBrakeNotch;
+            log_d("Brake Notch not changed");
+            break;
+        }
+        // YB-B1遷移時のチャタ対策
+        if (prevBrakeNotch <= 2 || status & 0b1000011 == 0b0000000) {
+            brakeNotch = prevBrakeNotch;
+            log_d("Brake Notch not changed");
+            break;
+        }
+    case 0b1111110: // EB
         brakeNotch = 9;
         log_d("Brake Notch: EB");
         break;
+    }
+
+    // 前回のブレーキノッチの値を保存
+    if (brakeNotch != prevBrakeNotch) {
+        prevBrakeNotch = brakeNotch;
     }
 
     // 0からINT16_MAXまでの値に変換
