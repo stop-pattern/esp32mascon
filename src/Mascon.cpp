@@ -144,6 +144,12 @@ int16_t Mascon::getBrakeNotchInt16() const {
     uint8_t brakeNotch = 0;
     switch (status) {
     case 0b1111111: // B0
+        // B7-EB遷移時のチャタ対策
+        if (prevBrakeNotch <= 2) {
+            brakeNotch = prevBrakeNotch;
+            log_d("Brake Notch not changed");
+            break;
+        }
         brakeNotch = 0;
         log_d("Brake Notch: B0");
         break;
