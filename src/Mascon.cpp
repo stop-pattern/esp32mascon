@@ -193,7 +193,7 @@ int16_t Mascon::getBrakeNotchInt16() const {
             break;
         }
         // YB-B1遷移時のチャタ対策
-        if (prevBrakeNotch <= 2 || status & 0b1000011 == 0b0000000) {
+        if (prevBrakeNotch <= 2 || (status & 0b1000011 == 0b0000000)) {
             brakeNotch = prevBrakeNotch;
             log_d("Brake Notch not changed");
             break;
